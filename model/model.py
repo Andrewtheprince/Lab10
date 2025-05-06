@@ -30,3 +30,6 @@ class Model:
     @staticmethod
     def getStati():
         return DAO.getAllStati()
+
+    def getStatiRaggiungibili(self, statoScelto):
+        pass

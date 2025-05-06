@@ -41,4 +41,9 @@ class Controller:
 
     def handleStatiRaggiungibili(self, e):
         statoScelto = self._view._ddStati.value
-        pass
+        statiRaggiungibili = self._model.getStatiRaggiungibili(statoScelto)
+        self._view._txt_result.controls.clear()
+        self._view._txt_result.controls.append(ft.Text(f"Elenco stati raggiungibili a partire da {statoScelto}:"))
+        for stato in statiRaggiungibili:
+            self._view._txt_result.controls.append(ft.Text(stato))
+        self._view.update_page()
