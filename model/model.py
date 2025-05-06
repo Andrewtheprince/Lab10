@@ -27,5 +27,6 @@ class Model:
         info.sort()
         return info
 
-    def getStati(self):
+    @staticmethod
+    def getStati():
         return DAO.getAllStati()

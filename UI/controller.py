@@ -1,8 +1,5 @@
 import flet as ft
 
-from database.DAO import DAO
-
-
 class Controller:
     def __init__(self, view, model):
         self._view = view
@@ -35,7 +32,7 @@ class Controller:
         self._view.update_page()
 
     def fillDD(self):
-        stati = DAO.getAllStati()
+        stati = self._model.getStati()
         for stato in stati:
             self._view._ddStati.options.append(ft.dropdown.Option(key=stato.StateNme, data=stato))
         self._view.update_page()
