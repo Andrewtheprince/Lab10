@@ -1,5 +1,7 @@
 import flet as ft
 
+from database.DAO import DAO
+
 
 class Controller:
     def __init__(self, view, model):
@@ -31,3 +33,12 @@ class Controller:
         for info in infoStati:
             self._view._txt_result.controls.append(ft.Text(info))
         self._view.update_page()
+
+    def fillDD(self):
+        stati = DAO.getAllStati()
+        for stato in stati:
+            self._view._ddStati.options.append(ft.dropdown.Option(key=stato.StateNme, data=stato))
+        self._view.update_page()
+
+    def handleStatiRaggiungibili(self, e):
+        print(self._view._ddStati.value)

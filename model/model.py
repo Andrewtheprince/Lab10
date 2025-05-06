@@ -26,3 +26,6 @@ class Model:
             info.append(f"{nodo} -- {vicini} vicini.")
         info.sort()
         return info
+
+    def getStati(self):
+        return DAO.getAllStati()

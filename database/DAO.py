@@ -1,4 +1,6 @@
 from database.DB_connect import DBConnect
+from model.stato import Stato
+
 
 class DAO:
 
@@ -18,4 +20,16 @@ class DAO:
         conn.close()
         return result
 
+    @staticmethod
+    def getAllStati():
+        conn = DBConnect.get_connection()
+        cursor = conn.cursor(dictionary=True)
+        result = []
+        query = """SELECT * FROM country c order by c.StateNme """
+        cursor.execute(query)
+        for row in cursor:
+            result.append(Stato(**row))
+        cursor.close()
+        conn.close()
+        return result
 
