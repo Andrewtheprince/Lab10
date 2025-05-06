@@ -29,6 +29,8 @@ class Controller:
         infoStati = self._model.getInfoStati()
         for info in infoStati:
             self._view._txt_result.controls.append(ft.Text(info))
+        self._view._ddStati.disabled = False
+        self._view._btnStatiRaggiungibili.disabled = False
         self._view.update_page()
 
     def fillDD(self):
@@ -38,4 +40,5 @@ class Controller:
         self._view.update_page()
 
     def handleStatiRaggiungibili(self, e):
-        print(self._view._ddStati.value)
+        statoScelto = self._view._ddStati.value
+        pass
