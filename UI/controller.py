@@ -3,10 +3,31 @@ import flet as ft
 
 class Controller:
     def __init__(self, view, model):
-        # the view, with the graphical elements of the UI
         self._view = view
-        # the model, which implements the logic of the program and holds the data
         self._model = model
 
     def handleCalcola(self, e):
-        pass
+        anno = self._view._txtAnno.value
+        if anno == "":
+            self._view._txtAnno.value = ""
+            self._view.create_alert("Devi inserire un valore!")
+            return
+        try:
+            anno = int(anno)
+        except ValueError:
+            self._view._txtAnno.value = ""
+            self._view.create_alert("Devi inserire un valore numerico !")
+            return
+        if anno < 1816 or anno > 2016:
+            self._view._txtAnno.value = ""
+            self._view.create_alert("Devi inserire un valore numerico tra 1816 e 2016!")
+            return
+        self._model.buildGraph(anno)
+        self._view._txt_result.controls.clear()
+        self._view._txt_result.controls.append(ft.Text("Grafo correttamente creato."))
+        self._view._txt_result.controls.append(ft.Text(f"Il grafo ha {self._model.getComponentiConnesse()} componenti connesse."))
+        self._view._txt_result.controls.append(ft.Text("Di seguito il dettaglio sui nodi:"))
+        infoStati = self._model.getInfoStati()
+        for info in infoStati:
+            self._view._txt_result.controls.append(ft.Text(info))
+        self._view.update_page()
