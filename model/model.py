@@ -32,4 +32,8 @@ class Model:
         return DAO.getAllStati()
 
     def getStatiRaggiungibili(self, statoScelto):
-        pass
+        if statoScelto in self._graph.nodes:
+            statiRaggiungibili = nx.dfs_successors(self._graph, statoScelto)
+            return statiRaggiungibili
+        else:
+            return f"Lo stato scelto non esisteva nell'anno selezionato!"
